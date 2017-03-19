@@ -1,14 +1,15 @@
 ﻿using System;
+using Persistence.Domain;
 using Persistence.Repository;
 
 namespace Persistence
 {
     public sealed class Program
     {
-        public static void Main()
+        private static void Main()
         {
             TeamRepository teamRepository = new TeamRepository();
-
+            
             Team newTeam = new Team
             {
                 Name = "FC Basel"
@@ -21,7 +22,9 @@ namespace Persistence
                 Console.WriteLine(team.Name);
             }
 
-            Console.ReadKey(true);
+            Team readTeam = teamRepository.GetEntryById(1);
+
+            Console.WriteLine(readTeam.Id + ", " + readTeam.Name);
         }
     }
 }

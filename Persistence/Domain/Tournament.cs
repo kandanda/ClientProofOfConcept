@@ -2,7 +2,7 @@
 
 namespace Persistence.Domain
 {
-    public sealed class Team : IEntry
+    public sealed class Tournament : IEntry
     {
         [Key]
         public int Id { get; set; }

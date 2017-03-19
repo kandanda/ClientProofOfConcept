@@ -52,12 +52,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\IEntry.cs" />
+    <Compile Include="Domain\Tournament.cs" />
     <Compile Include="KandandaDbContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="Team.cs" />
-    <Compile Include="TeamRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Domain\Team.cs" />
+    <Compile Include="Repository\TeamRepository.cs" />
+    <Compile Include="Repository\TournamentRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

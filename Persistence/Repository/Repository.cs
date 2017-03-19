@@ -2,10 +2,11 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
+using Persistence.Domain;
 
 namespace Persistence.Repository
 {
-    public abstract class Repository<T> where T : class
+    public abstract class Repository<T> where T : class, IEntry
     {
         private readonly PropertyInfo context;
 
@@ -16,24 +17,66 @@ namespace Persistence.Repository
         
         public List<T> GetAll()
         {
-            using (KandandaDbContext db = new KandandaDbContext())
+            using (var db = new KandandaDbContext())
             {
-                DbSet<T> set = (DbSet<T>) context.GetValue(db);
-                return set.Select(entry => entry).ToList();
+                var set = GetDbSet(db);
+
+                return set
+                        .Select(entry => entry)
+                        .ToList();
             }
         }
 
-        public int Save(T entry)
+        public void DeleteAll()
         {
-            using (KandandaDbContext db = new KandandaDbContext())
+            foreach (var entry in GetAll())
             {
-                var dbSet = GetDbSet(db, context);
-                dbSet.Add(entry);
-                return db.SaveChanges();
+                DeleteEntry(entry);
             }
         }
 
-        private DbSet<T> GetDbSet(KandandaDbContext db, PropertyInfo context)
+        public void DeleteEntry(T entry)
+        {
+            using (var db = new KandandaDbContext())
+            {
+                var set = GetDbSet(db);
+                set.Remove(entry);
+            }
+        }
+
+        public T GetEntryById(int id)
+        {
+            using (var db = new KandandaDbContext())
+            {
+                var set = GetDbSet(db);
+
+                return set
+                    .FirstOrDefault(entry => entry.Id == id);
+            }
+        }
+
+
+        public void Save(T entry)
+        {
+            using (var db = new KandandaDbContext())
+            {
+                var set = GetDbSet(db);
+                
+                if (entry.Id != 0)
+                {
+                    T originalEntry = GetEntryById(entry.Id);
+                    db.Entry(originalEntry).CurrentValues.SetValues(entry);
+                }
+                else
+                {
+                    set.Add(entry);
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        private DbSet<T> GetDbSet(KandandaDbContext db)
         {
             return (DbSet<T>) context.GetValue(db);
         }

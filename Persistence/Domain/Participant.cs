@@ -4,20 +4,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Persistence.Domain
 {
-    public class Tournament : IEntry
+    public class Participant : IEntry
     {
         [Key]
         public int Id { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
-        
-        public virtual ICollection<Phase> Phases { get; set; }
 
-        public virtual ICollection<Place> Places { get; set; }
-
-        [InverseProperty("Tournaments")]
-        public virtual ICollection<Participant> Participants { get; set; } = new HashSet<Participant>();
+        [InverseProperty("Participants")]
+        public virtual ICollection<Tournament> Tournaments { get; set; } = new List<Tournament>();
 
         [Timestamp]
         public byte[] RowVersion { get; set; }

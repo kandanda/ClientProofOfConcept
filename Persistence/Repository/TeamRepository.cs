@@ -2,7 +2,7 @@
 
 namespace Persistence.Repository
 {
-    public sealed class TeamRepository : Repository<Team>
+    public sealed class TeamRepository : Repository<Participant>
     {
         public TeamRepository() : base("Teams")
         {

@@ -8,11 +8,12 @@ namespace Persistence
         public KandandaDbContext()
         {
             Database.SetInitializer(new DropCreateDatabaseAlways<KandandaDbContext>());
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<KandandaDbContext>());
         }
-
-        public DbSet<Team> Teams { get; set; }
-
+        
         public DbSet<Tournament> Tournaments { get; set; }
+
+        public DbSet<Participant> Participants { get; set; }
+
+        public DbSet<Match> Matches { get; set; }
     }
 }

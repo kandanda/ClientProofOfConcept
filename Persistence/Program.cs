@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Persistence.Domain;
 using Persistence.Repository;
 
@@ -8,23 +9,32 @@ namespace Persistence
     {
         private static void Main()
         {
-            TeamRepository teamRepository = new TeamRepository();
-            
-            Team newTeam = new Team
+            TournamentRepository tournamentRepo = new TournamentRepository();
+            ParticipantRepository participantRepo = new ParticipantRepository();
+
+            Tournament newTournament = new Tournament
             {
-                Name = "FC Basel"
+                Name = "Schweizermeisterschaft"
             };
 
-            teamRepository.Save(newTeam);
-
-            foreach (Team team in teamRepository.GetAll())
+            Participant newParticipant = new Participant
             {
-                Console.WriteLine(team.Name);
+                Name = "FC St. Gallen"
+            };
+
+            newTournament.Participants.Add(newParticipant);
+
+            tournamentRepo.Save(newTournament);
+
+            List<Participant> participants = participantRepo.GetAll();
+
+            foreach (Participant participant in participants)
+            {
+                Console.WriteLine($"{participant.Id} {participant.Name}");
             }
 
-            Team readTeam = teamRepository.GetEntryById(1);
-
-            Console.WriteLine(readTeam.Id + ", " + readTeam.Name);
+            Console.ReadKey();
         }
     }
 }
+

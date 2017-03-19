@@ -12,11 +12,11 @@ namespace PersistenceTest
         public void TestCreateNewTeam()
         {
             string teamName = "FC St. Gallen";
-            Team newTeam = CreateTeam(teamName);
+            Participant newTeam = CreateTeam(teamName);
 
             int id = newTeam.Id;
 
-            Team reloadedTeam = GetEntryById(id);
+            Participant reloadedTeam = GetEntryById(id);
 
             Assert.AreEqual(teamName, reloadedTeam.Name);
             Assert.AreEqual(id, reloadedTeam.Id);
@@ -39,7 +39,7 @@ namespace PersistenceTest
             Assert.AreEqual(2, teamCount);
         }
         
-        private List<Team> GetAll()
+        private List<Participant> GetAll()
         {
             TeamRepository repository = new TeamRepository();
             return repository.GetAll();
@@ -51,16 +51,16 @@ namespace PersistenceTest
             repository.DeleteAll();
         }
 
-        private Team GetEntryById(int id)
+        private Participant GetEntryById(int id)
         {
             TeamRepository repository = new TeamRepository();
-            Team team = repository.GetEntryById(id);
+            Participant team = repository.GetEntryById(id);
             return team;
         }
 
-        private Team CreateTeam(string teamName)
+        private Participant CreateTeam(string teamName)
         {
-            Team newTeam = new Team
+            Participant newTeam = new Participant
             {
                 Name = teamName
             };

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMPure", "MVVMExample\MVVMPure.csproj", "{EF4D02C8-1A75-43DF-A630-E67E65B77CB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EF4D02C8-1A75-43DF-A630-E67E65B77CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF4D02C8-1A75-43DF-A630-E67E65B77CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF4D02C8-1A75-43DF-A630-E67E65B77CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

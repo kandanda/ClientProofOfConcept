@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVVMPrismDemo", "MVVMPrismD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMApp", "MVVMApp\MVVMApp.csproj", "{99C9E82C-C594-446D-AA59-8FFBC43AD226}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistenceTest", "PersistenceTest\PersistenceTest.csproj", "{2AF1DCE3-2240-461E-94D9-78F8383805EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{EF4D02C8-1A75-43DF-A630-E67E65B77CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF4D02C8-1A75-43DF-A630-E67E65B77CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF4D02C8-1A75-43DF-A630-E67E65B77CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6058D68C-03C0-45B6-95A3-F18BEFAEB7E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF1DCE3-2240-461E-94D9-78F8383805EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF1DCE3-2240-461E-94D9-78F8383805EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF1DCE3-2240-461E-94D9-78F8383805EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF1DCE3-2240-461E-94D9-78F8383805EA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{99C9E82C-C594-446D-AA59-8FFBC43AD226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{99C9E82C-C594-446D-AA59-8FFBC43AD226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99C9E82C-C594-446D-AA59-8FFBC43AD226}.Release|Any CPU.ActiveCfg = Release|Any CPU

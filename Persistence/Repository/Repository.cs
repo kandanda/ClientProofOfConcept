@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Pluralization;
 using System.Linq;
-using System.Reflection;
 using Persistence.Domain;
 
 namespace Persistence.Repository
 {
     public abstract class Repository<T> where T : class, IEntry
     {
-        private readonly PropertyInfo context;
+        private readonly IDatabaseContextFactory dbContextFactory;
+        private readonly IPluralizationService pluralizationService;
 
-        protected Repository(string setName)
+        protected Repository(IDatabaseContextFactory dbContextFactory, IPluralizationService pluralizationService)
         {
-            context = typeof(KandandaDbContext).GetProperty(setName);
+            this.dbContextFactory = dbContextFactory;
+            this.pluralizationService = pluralizationService;
         }
-        
+
         public List<T> GetAll()
         {
-            using (var db = new KandandaDbContext())
+            using (var db = dbContextFactory.Create())
             {
-                var set = GetDbSet(db);
-
-                return set
+                return GetDbSet(db)
                         .Select(entry => entry)
                         .ToList();
             }
@@ -37,48 +37,50 @@ namespace Persistence.Repository
 
         public void DeleteEntry(T entry)
         {
-            using (var db = new KandandaDbContext())
+            using (var db = dbContextFactory.Create())
             {
-                var set = GetDbSet(db);
-                set.Remove(entry);
+                GetDbSet(db).Remove(entry);
             }
         }
 
         public T GetEntryById(int id)
         {
-            using (var db = new KandandaDbContext())
+            using (var db = dbContextFactory.Create())
             {
-                var set = GetDbSet(db);
-
-                return set
+                return GetDbSet(db)
                     .FirstOrDefault(entry => entry.Id == id);
             }
         }
-
-
+        
         public void Save(T entry)
         {
-            using (var db = new KandandaDbContext())
+            using (var db = dbContextFactory.Create())
             {
-                var set = GetDbSet(db);
-                
                 if (entry.Id != 0)
                 {
-                    T originalEntry = GetEntryById(entry.Id);
+                    var originalEntry = GetEntryById(entry.Id);
                     db.Entry(originalEntry).CurrentValues.SetValues(entry);
                 }
                 else
                 {
-                    set.Add(entry);
+                    GetDbSet(db).Add(entry);
                 }
 
                 db.SaveChanges();
             }
         }
 
-        private DbSet<T> GetDbSet(KandandaDbContext db)
+        private DbSet<T> GetDbSet(DbContext db)
         {
-            return (DbSet<T>) context.GetValue(db);
+            var pluralizedName = GetPluralizedName();
+            var propertyInfo = db.GetType().GetProperty(pluralizedName);
+            return (DbSet<T>) propertyInfo.GetValue(db);
+        }
+
+        private string GetPluralizedName()
+        {
+            var className = typeof(T).Name;
+            return pluralizationService.Pluralize(className);
         }
     }
 }

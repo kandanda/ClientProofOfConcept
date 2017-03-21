@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Persistence.Domain
 {
-    public class Phase
+    public class Phase : IEntry
     {
         [Key]
         public int Id { get; set; }

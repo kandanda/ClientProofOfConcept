@@ -57,10 +57,14 @@
     <Compile Include="Domain\Phase.cs" />
     <Compile Include="Domain\Place.cs" />
     <Compile Include="Domain\Tournament.cs" />
+    <Compile Include="IDatabaseContextFactory.cs" />
     <Compile Include="KandandaDbContext.cs" />
+    <Compile Include="KandandaDatabaseContextFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ParticipantRepository.cs" />
+    <Compile Include="Repository\PhaseRepository.cs" />
+    <Compile Include="Repository\PlaceRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Domain\Participant.cs" />
     <Compile Include="Repository\TeamRepository.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Pluralization;
 using Persistence.Domain;
 using Persistence.Repository;
 
@@ -9,24 +11,26 @@ namespace Persistence
     {
         private static void Main()
         {
-            TournamentRepository tournamentRepo = new TournamentRepository();
-            ParticipantRepository participantRepo = new ParticipantRepository();
+            var dbContextFactory = new KandandaDatabaseContextFactory();
+            var pluralizationService = new EnglishPluralizationService();
 
-            Tournament newTournament = new Tournament
+            var tournamentRepository = new TournamentRepository(dbContextFactory, pluralizationService);
+            var participantRepository = new ParticipantRepository(dbContextFactory, pluralizationService);
+            
+            var newTournament = new Tournament
             {
                 Name = "Schweizermeisterschaft"
             };
 
-            Participant newParticipant = new Participant
+            var newParticipant = new Participant
             {
                 Name = "FC St. Gallen"
             };
 
             newTournament.Participants.Add(newParticipant);
+            tournamentRepository.Save(newTournament);
 
-            tournamentRepo.Save(newTournament);
-
-            List<Participant> participants = participantRepo.GetAll();
+            List<Participant> participants = participantRepository.GetAll();
 
             foreach (Participant participant in participants)
             {
